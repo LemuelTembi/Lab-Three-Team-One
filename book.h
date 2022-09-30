@@ -4,7 +4,7 @@
 class Book
 {
    private:
-      string ISBN;
+      string ISBN
       string title;
       string author;
       char bookType; //R/r - recreational, A/a - academic, N/n-neither
