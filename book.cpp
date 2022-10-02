@@ -3,9 +3,10 @@
 //  Book class.
 
 //  ========================= header files =======================
-#include<iostream>                      // for console I/O
-#include<cstring>                       // for c string library
-#include "employee.h"                   // for Employee class
+#include <iostream>                       // for console I/O
+#include <string>                         // for string library
+#include <cstring>                       // for c string library
+#include "book.h"                   // for Employee class
 
 //  ======================= namespaces used ======================
 using namespace std;                    // for std functions
@@ -23,45 +24,123 @@ Book::Book(string newISBN, string newTitle,
    author = newAuthor;
    numPages = newNumPages;
 
+   bookType = 'n';
+   bookStatus = 3;
+   currentPage = 0;
+   price = 0;
+
 } // end of value constructor
 
 // accessor functions to retrieve content of member variables (private)
-string getISBN()
+string Book::getISBN()
 {
    return ISBN;
 }
 
-string getTitle()
+string Book::getTitle()
 {
    return title;
 }
 
-string getAuthor()
+string Book::getAuthor()
 {
    return author;
 }
 
-float getPrice()
+float Book::getPrice()
 {
    return price;
 }
 
-char getBookType()
+char Book::getBookType()
 {
    return bookType;
 }
 
-int getBookStatus()
+int Book::getBookStatus()
 {
    return bookStatus;
 }
 
-int getPages()
+int Book::getPages()
 {
-   return getPages;
+   return numPages;
 }
 
-int getCurrentPage()
+int Book::getCurrentPage()
 {
-   getCurrentPage;
+   return currentPage;
+}
+
+void Book::acquireBook(char newBookStatus , int newBookType, float amtPaid)
+{
+    if (tolower(newBookStatus) == 'r' || tolower(newBookStatus) == 'a')
+    {
+        bookStatus = newBookStatus;
+    }
+    else
+    {
+        bookStatus = bookStatus;
+    }
+
+    if (newBookType == 1 || newBookType == 2)
+    {
+        bookType= newBookType;
+    }
+    else
+    {
+        bookType = bookType;
+    }
+
+    if (tolower(newBookType) == 'r' || tolower(newBookType) == 'a')
+    {
+        price = amtPaid;
+    }
+    else
+    {
+        price = price;
+    }
+}
+
+void Book::readPage()
+{
+   if ((bookType != 3) && (currentPage < numPages))
+   {
+      if (currentPage + 1 < numPages)
+      {
+         currentPage += 1;
+      }
+   }
+}
+
+void Book::jumpPages(int addPages)
+{
+   if ((bookType != 3) && (currentPage < numPages))
+   {
+      if (currentPage + addPages < numPages)
+      {
+         currentPage += addPages;
+      }
+   }
+}
+
+void Book::backup(int subPages)
+{
+   if ((bookType != 3) && (currentPage != 1))
+   {
+      if (currentPage - subPages > 0)
+      {
+         currentPage -= subPages;
+      }
+   }
+}
+
+void Book::returnBook()
+{
+    if (bookType == 2)
+    {
+         bookType = 3;
+         bookStatus = 'n';
+         price = 0.0;
+    }
 }
