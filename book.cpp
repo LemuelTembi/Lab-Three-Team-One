@@ -31,7 +31,7 @@ Book::Book(string newISBN, string newTitle,
 
 } // end of value constructor
 
-// accessor functions to retrieve content of member variables (private)
+// accessor functions to retrieve content of private member variables
 string Book::getISBN()
 {
    return ISBN;
@@ -72,8 +72,13 @@ int Book::getCurrentPage()
    return currentPage;
 }
 
+// mutator functions. These will change the values assigned 
+// to private variables in the book class
 void Book::acquireBook(char newBookStatus , int newBookType, float amtPaid)
 {
+    // checks if the value of newBookSatus is equal to 'r' or 'a' and assigns 
+    // that value to the private variable bookStatus in the Book class
+    // if not, the value of the variable bookStatus stays the same
     if (tolower(newBookStatus) == 'r' || tolower(newBookStatus) == 'a')
     {
         bookStatus = newBookStatus;
@@ -83,6 +88,9 @@ void Book::acquireBook(char newBookStatus , int newBookType, float amtPaid)
         bookStatus = bookStatus;
     }
 
+    // checks if the value of newBookType is equal to 1 or 2 and assigns 
+    // that value to the private variable bookType in the Book class
+    // if not, the value of the variable bookType stays the same
     if (newBookType == 1 || newBookType == 2)
     {
         bookType= newBookType;
@@ -92,6 +100,10 @@ void Book::acquireBook(char newBookStatus , int newBookType, float amtPaid)
         bookType = bookType;
     }
 
+    // checks if the value of newBookSatus is equal to 'r' or 'a'. 
+    // if it is, it assignes the value of amtPaid private variable 
+    // price in the Book class. if not, the value of the variable`
+    // price stays the same
     if (tolower(newBookType) == 'r' || tolower(newBookType) == 'a')
     {
         price = amtPaid;
@@ -104,6 +116,11 @@ void Book::acquireBook(char newBookStatus , int newBookType, float amtPaid)
 
 void Book::readPage()
 {
+   // checks if bookType is not equal to 3 and you are not on
+   // the last page, then it checks if adding 1 to  
+   // currentPage will go beyond the max number of pages
+   // if not, it adds 1 to currentPage and assigns it to 
+   // currentPage
    if ((bookType != 3) && (currentPage < numPages))
    {
       if (currentPage + 1 < numPages)
@@ -115,6 +132,11 @@ void Book::readPage()
 
 void Book::jumpPages(int addPages)
 {
+   // checks if bookType is not equal to 3 and you are not on
+   // the last page, then it checks if adding the value of    
+   // addPages to currentPage will go beyond the max number of
+   // pages. If not, it adds the value of addPages to currentPage
+   // and assign it to currentPage
    if ((bookType != 3) && (currentPage < numPages))
    {
       if (currentPage + addPages < numPages)
@@ -126,6 +148,11 @@ void Book::jumpPages(int addPages)
 
 void Book::backup(int subPages)
 {
+   // checks if bookType is not equal to 3 and you are not on
+   // the first page, then it checks if subtracting the value of    
+   // subPages from currentPage will go beyond the first page.  
+   // If not, it subtracts the value of subPags from currentPage
+   // and assign it to currentPage
    if ((bookType != 3) && (currentPage != 1))
    {
       if (currentPage - subPages > 0)
@@ -137,6 +164,8 @@ void Book::backup(int subPages)
 
 void Book::returnBook()
 {
+    // checks if bookType is equal to 2 and the assigns
+    // some values to some variables
     if (bookType == 2)
     {
          bookType = 3;
