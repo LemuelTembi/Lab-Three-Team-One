@@ -12,6 +12,7 @@
 const int MIN = 1;
 const int MAX = 7;
 const int DECIMAL = 2;
+const int librarySize = 20;
 
 //  ======================= namespaces used ======================
 using namespace std;
@@ -21,11 +22,20 @@ using namespace std;
 void displayMenu();
 void getChoice(int&);
 void takeAction(int, Book&);
+void addNewKnownBook(string, string, string);
+void newUnknownBook();
 
+//int library[librarySize];
+//int &bookIndex;
+
+Book book1("3972640326748","Lord of the rings", "Jrr Token", 200);
 
 int main(){//beginning of int main
 
-    Book book1("915934560213", "The lord of the rings", "J. R. R. Tolkien", 1178);
+    /*for (int i = 0; i < librarySize; i++)
+    {
+         cout << library[i] << endl << endl;
+    }*/
 
     int choice;
 
@@ -40,7 +50,18 @@ int main(){//beginning of int main
 
 }// end of main
 
+/*void addNewKnownBook(string ISBN, string bookTitle, string author, int numPages)
+{
+   bookIndex = 0;
+   Book bookTitle(ISBN, bookTitle, author, numPages);
 
+}
+
+void addNewUnknownBook (string bookName)
+{
+   Book bookTitle();
+}
+*/
 void displayMenu()
 // this funciton displays the main menu of the program
 {
@@ -90,11 +111,14 @@ void takeAction(int choice, Book &book1)
     {
         case 1: cout << endl << "Option 1 was selected... " << endl;
                 cout << "Please enter book status(R/r for recreational, A/a for academic, N/n-neither): ";
-                cin >> newBookStatus;
-                cout << "Please enter book type(1- purchased, 2-rented, 3-neither of these): ";
                 cin >> newBookType;
+                cin.ignore(200, '\n');
+                cout << "Please enter book type(1- purchased, 2-rented, 3-neither of these): ";
+                cin >> newBookStatus;
+                cin.ignore(200, '\n');
                 cout << "Please enter amount paid for book: ";
                 cin >> amtPaid;
+                cin.ignore(200, '\n');
                 book1.acquireBook(newBookType, newBookStatus, amtPaid);
                 cout << endl;
                 break;
@@ -130,7 +154,7 @@ void takeAction(int choice, Book &book1)
         case 6: cout << "option 6 was selected "<< endl;
                 cout << "the state of the book will now be displayed:" << endl << endl;
                 cout << "**************************************************" << endl;
-                cout << "The Book title is: " << book1.getISBN() << endl;
+                cout << "The Book title is: " << book1.getTitle() << endl;
                 cout << "The Book type is: " << book1.getBookType() << endl;
                 cout << "The Book Status is: " << book1.getBookStatus() << endl;
                 cout << "The number of pages of the book is: " << book1.getPages() << endl;
@@ -141,14 +165,7 @@ void takeAction(int choice, Book &book1)
         default:
                 break;
 
-
-
-
     }
 }
 
-/*void createNewBook(string varName, string ISBN, string bookTitle, string author, int numPages)
-{
-   Book varName(ISBN, bookTitle, author, numPages);
-}
-*/
+
