@@ -125,30 +125,80 @@ void takeAction(int choice, Book &book1)
                 break;
 
         case 2: cout << "option 2 was selected... " << endl;
-                cout << "Page read!" << endl;
-                book1.readPage();
+                if (book1.getBookStatus() != 3)
+                {
+                   book1.readPage();
+                   cout << "Page read!" << endl;
+                }
+                else
+                {
+                   cout << endl << "You cannot read this book. You have neither purchased it nor rented it" << endl;
+                }
                 cout << endl;
                 break;
 
         case 3: cout << "option 3 was selected... " << endl;
-                cout << "please enter the number of pages you want to go forward: ";
-                cin >> addPages;
-                book1.jumpPages(addPages);
-                cout << "You went forward by " << addPages << " number of pages!" << endl;
-                cout << endl;
+                if (book1.getBookStatus() != 3)
+                {
+                   cout << "please enter the number of pages you want to go forward: ";
+                   cin >> addPages;
+                   if (addPages > book1.getPages() || addPages > book1.getPages() - book1.getCurrentPage())
+                   {
+                      cout << endl << "You cannot jump by " << addPages << " pages. It is more than the number of pages the book has..." << endl;
+                   }
+                   else if (addPages < 0)
+                   {
+                      cout << endl << "You cannot jump page by a negative number..." << endl;
+                   }
+                   else
+                   {
+                      book1.jumpPages(addPages);
+                      cout << endl << "You went forward by " << addPages << " number of pages!" << endl;
+                   }
+                   cout << endl;
+                }
+                else
+                {
+                   cout << endl << "You cannot read this book. You have neither purchased it nor rented it" << endl;
+                }
                 break;
 
         case 4: cout << endl << "option 4 was selected... " << endl;
-                cout << "please enter the number of pages you want to go backwards: ";
-                cin >> subPages;
-                book1.backup(subPages);
-                cout << "You went backwards by " << subPages << " number of pages!" << endl;
-                cout << endl;
+                if (book1.getBookStatus() != 3)
+                {
+                   cout << "please enter the number of pages you want to go backwards: ";
+                   cin >> subPages;
+                   if (subPages > book1.getCurrentPage())
+                   {
+                      cout << endl << "You cannot backup more than " << book1.getCurrentPage() << " number of pages" << endl;
+                   }
+                   else if (addPages < 0)
+                   {
+                      cout << endl << "You cannot jump page by a negative number..." << endl;
+                   }
+                   else
+                   {
+                      book1.backup(subPages);
+                      cout << "You went backwards by " << subPages << " number of pages!" << endl;
+                   }
+                   cout << endl;
+                }
+                else
+                {
+                   cout << endl << "You cannot read this book. You have neither purchased it nor rented it" << endl;
+                }
                 break;
 
         case 5: cout << endl << "option 5 was selected... " << endl;
-                book1.returnBook();
-                cout << "you have returned to book. ";
+                if (book1.getBookStatus() == 2)
+                {
+                   book1.returnBook();
+                   cout << "you have returned to book. ";
+                }
+                else
+                {
+                   cout << endl << "You can only return a book you rented!" << endl;
+                }
                 cout << endl;
                 break;
 
