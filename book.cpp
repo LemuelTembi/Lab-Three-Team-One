@@ -104,7 +104,7 @@ void Book::acquireBook(int newBookStatus , char newBookType, float amtPaid)
 
 void Book::readPage()
 {
-   if ((bookType != 3) && (currentPage < numPages))
+   if ((bookStatus != 3) && (currentPage < numPages))
    {
       if (currentPage + 1 < numPages)
       {
@@ -117,9 +117,9 @@ void Book::jumpPages(int addPages)
 {
    if (!(addPages < 0))
    {
-      if ((bookType != 3) && (currentPage < numPages))
+      if ((bookStatus != 3) && (currentPage < numPages))
       {
-         if (currentPage + addPages < numPages)
+         if (currentPage + addPages <= numPages)
          {
             currentPage += addPages;
          }
