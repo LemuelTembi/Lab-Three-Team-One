@@ -110,16 +110,17 @@ void takeAction(int choice, Book &book1)
     //choice of the user.
     {
         case 1: cout << endl << "Option 1 was selected... " << endl;
-                cout << "Please enter book status(R/r for recreational, A/a for academic, N/n-neither): ";
+                cout << "Please enter book Type(R/r for recreational, A/a for academic, N/n-neither): ";
                 cin >> newBookType;
                 cin.ignore(200, '\n');
-                cout << "Please enter book type(1- purchased, 2-rented, 3-neither of these): ";
+                cout << "Please enter book status(1- purchased, 2-rented, 3-neither of these): ";
                 cin >> newBookStatus;
                 cin.ignore(200, '\n');
                 cout << "Please enter amount paid for book: ";
                 cin >> amtPaid;
                 cin.ignore(200, '\n');
-                book1.acquireBook(newBookType, newBookStatus, amtPaid);
+                book1.acquireBook(newBookStatus, newBookType, amtPaid);
+
                 cout << endl;
                 break;
 
