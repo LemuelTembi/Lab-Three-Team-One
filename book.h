@@ -1,10 +1,12 @@
 #ifndef CLASS_BOOK_
 #define CLASS_BOOK_
+#include <string>
+using namespace std;
 
 class Book
 {
    private:
-      string ISBN
+      string ISBN;
       string title;
       string author;
       char bookType; //R/r - recreational, A/a - academic, N/n-neither
@@ -25,7 +27,7 @@ class Book
       int getPages();
       int getCurrentPage();
 
-      void acquireBook(char, int, float);
+      void acquireBook(int, char, float);
       void readPage();
       void jumpPages(int);
       void backup(int);
