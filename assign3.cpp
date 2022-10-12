@@ -54,9 +54,7 @@ int main(){//beginning of int main
 {
    bookIndex = 0;
    Book bookTitle(ISBN, bookTitle, author, numPages);
-
 }
-
 void addNewUnknownBook (string bookName)
 {
    Book bookTitle();
@@ -206,8 +204,25 @@ void takeAction(int choice, Book &book1)
                 cout << "the state of the book will now be displayed:" << endl << endl;
                 cout << "**************************************************" << endl;
                 cout << "The Book title is: " << book1.getTitle() << endl;
-                cout << "The Book type is: " << book1.getBookType() << endl;
-                cout << "The Book Status is: " << book1.getBookStatus() << endl;
+                
+                //cout << "The Book type is: " << book1.getBookType() << endl;
+                if (book1.getBookType.tolower() == 'r'){
+                  cout << "The Book type is: recreational" << endl;
+                } else if (book1.getBookType.tolower() == 'a'){
+                  cout << "The Book type is: academic" << endl;
+                } else {
+                  cout << "The Book type is: Neither" << endl;
+                }
+
+                //cout << "The Book Status is: " << book1.getBookStatus() << endl;
+                if (book1.getBookStatus == 1){
+                  cout << "the book Status is: purchased" << endl;
+                } else if (book1.getBookStatus == 2){
+                  cout << "the book status is: reted" << endl;
+                } else {
+                  cout << "the book status is: neither of these" << endl;
+                }
+
                 cout << "The number of pages of the book is: " << book1.getPages() << endl;
                 cout << "The current page of the book is: " << book1.getCurrentPage() << endl;
                 cout << endl;
@@ -218,5 +233,4 @@ void takeAction(int choice, Book &book1)
 
     }
 }
-
 
