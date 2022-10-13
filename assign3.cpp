@@ -124,14 +124,18 @@ void takeAction(int choice, Book &book1)
                 break;
 
         case 2: cout << "option 2 was selected... " << endl;
-                if (book1.getBookStatus() != 3)
+                if (book1.getBookStatus() != 3 && book1.getCurrentPage() != book1.getPages())
                 {
                    book1.readPage();
                    cout << "Page read!" << endl;
                 }
-                else
+                else if (book1.getBookStatus() == 3)
                 {
                    cout << endl << "You cannot read this book. You have neither purchased it nor rented it" << endl;
+                }
+                else
+                {
+                   cout << endl << "You cannot read this book. You are on the last page" << endl;
                 }
                 cout << endl;
                 break;
@@ -167,9 +171,9 @@ void takeAction(int choice, Book &book1)
                 {
                    cout << "please enter the number of pages you want to go backwards: ";
                    cin >> subPages;
-                   if (subPages > book1.getCurrentPage())
+                   if (subPages >= book1.getCurrentPage())
                    {
-                      cout << endl << "You cannot backup more than " << book1.getCurrentPage() << " number of pages" << endl;
+                      cout << endl << "You cannot backup more than " << book1.getCurrentPage() - 1<< " number of pages" << endl;
                    }
                    else if (addPages < 0)
                    {
@@ -207,21 +211,21 @@ void takeAction(int choice, Book &book1)
                 cout << "The Book title is: " << book1.getTitle() << endl;
 
                 //cout << "The Book type is: " << book1.getBookType() << endl;
-                if (book1.getBookType() == 'R' || book1.getBookType() == 'r'){
-                  cout << "The Book type is: recreational" << endl;
-                } else if (book1.getBookType() == 'A' || book1.getBookType() == 'a'){
-                  cout << "The Book type is: academic" << endl;
+                if (tolower(book1.getBookType()) == 'r'){
+                  cout << "The Book type is: Recreational" << endl;
+                } else if (tolower(book1.getBookType()) == 'a'){
+                  cout << "The Book type is: Academic" << endl;
                 } else {
-                  cout << "The Book type is: Neither" << endl;
+                  cout << "The book is neither recreational nor academic" << endl;
                 }
 
                 //cout << "The Book Status is: " << book1.getBookStatus() << endl;
                 if (book1.getBookStatus() == 1){
-                  cout << "the book Status is: purchased" << endl;
+                  cout << "the book Status is: Purchased" << endl;
                 } else if (book1.getBookStatus() == 2){
-                  cout << "the book status is: reted" << endl;
+                  cout << "the book status is: Rented" << endl;
                 } else {
-                  cout << "the book status is: neither of these" << endl;
+                  cout << "You have neither purchased nor rented the book" << endl;
                 }
 
                 cout << "The number of pages of the book is: " << book1.getPages() << endl;
@@ -234,3 +238,4 @@ void takeAction(int choice, Book &book1)
 
     }
 }
+
