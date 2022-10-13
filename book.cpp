@@ -131,7 +131,7 @@ void Book::backup(int subPages)
 {
    if (!(subPages < 0))
    {
-      if ((bookType != 3) && (currentPage != 1))
+      if ((bookStatus != 3) && (currentPage != 1))
       {
          if (currentPage - subPages > 0)
          {
@@ -143,10 +143,10 @@ void Book::backup(int subPages)
 
 void Book::returnBook()
 {
-    if (bookType == 2)
+    if (bookStatus == 2)
     {
-         bookType = 3;
-         bookStatus = 'n';
+         bookType = 'n';
+         bookStatus = 3;
          price = 0.0;
     }
 }
